@@ -33,5 +33,4 @@
  
 >How to add **(dev) connection** details for you **local MySQL database**
 
-
-     *url, username og password for database er sat i application-properties som spring.datasources med variable navne. Derefter redigerer man run-konfigurationen og putter de environmetn-variabler ind man vil bruge ie. sætter de navne man nu har givet dem i applicationproperties = adressen på ens database (jdbc:mysql://localhost:3306/carbase) hvor sidste led carbase er det specifikke schema man skal bruge, og derudover den lokale bruger og password man har oprettet til sin MySQL database. Det kan også lade sig gøre at tilføje/ændre environment-variabler vha termnialen som man fx er nødt til når man har deployet på en linux VM.
+*url, username og password for database er sat i application-properties som spring.datasources med variable navne. Derefter redigerer man run-konfigurationen og putter de environmetn-variabler ind man vil bruge ie. sætter de navne man nu har givet dem i applicationproperties = adressen på ens database (jdbc:mysql://localhost:3306/carbase) hvor sidste led carbase er det specifikke schema man skal bruge, og derudover den lokale bruger og password man har oprettet til sin MySQL database. Det kan også lade sig gøre at tilføje/ændre environment-variabler vha termnialen som man fx er nødt til når man har deployet på en linux VM.*
