@@ -15,7 +15,7 @@
   
 >How to control the mapping between **individual fields** in an Entity class and their **matching columns** in the database
 
-*Individuelle felter i klassen kan annoteres med @Column der tager parametre hvor man fx kan omdefinere det navn kolonnen skal have i databasen (systemet kan dog godt fx af sig selv lave om fra camelCase til under_score), eller om den skal være nullable eller ej*  
+*Individuelle felter i klassen kan annoteres med @Column der tager parametre hvor man fx kan omdefinere det navn kolonnen skal have i databasen (systemet vil dog godt fx af sig selv lave om fra camelCase til under_score), eller om den skal være nullable eller ej*  
      
 >How to **auto generate IDs**, and how to ensure we are using  a specific database's preferred way of doing it (Auto Increment in our case for  MySQL)
 
@@ -24,8 +24,9 @@
      
 >How to use and define repositories and relevant query methods using **Spring Data JPAs repository pattern**
 
- *Gøres ved at lave et interface der extender JpaRepository og annotere det @Repository med definition af hvilken entity-klasse det skal forbindes til. Man får så en masse standard metoder forærende: 
-     ![image](https://github.com/jakobagger/cars/assets/113458342/13b265b5-5562-47fd-8bb4-4075a3f62a59)
+ *Gøres ved at lave et interface der extender JpaRepository og annotere det @Repository med definition af hvilken entity-klasse det skal forbindes til. Man får så en masse standard metoder forærende:*  
+ 
+![image](https://github.com/jakobagger/cars/assets/113458342/13b265b5-5562-47fd-8bb4-4075a3f62a59)
      
 >How to write simple **"integration"** tests, using **H2** as a mock-database instead of MySQL
 
