@@ -31,4 +31,15 @@ class CarRepositoryTest {
         assertEquals("Toyota", car.getBrand());
     }
 
+    @Test
+    public void carRepositoryTest(){
+        assertEquals(2, carRepository.count(),"Expects two car rows in the database");
+    }
+
+    @Test
+    void testSaveMethod() {
+        Car testCar = carRepository.save(new Car("Optimus Prime","Autobot",66, 6));
+        assertTrue(testCar.getId()>0,"Expects the car to be saved with an autoincremented ID");
+    }
+
 }
