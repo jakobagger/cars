@@ -20,13 +20,13 @@ class CarRepositoryTest {
         if(!dataInitialized) {
             carRepository.deleteAll();
             carRepository.save(new Car("Toyota", "Carina", 500, 50));
-            carRepository.save(new Car("Ford", "Aztec", 7000, 25));
+            carRepository.save(new Car("Pontiac", "Aztec", 7000, 25));
             dataInitialized = true;
         }
     }
 
     @Test
-    public void findByBrandTest(){
+    public void testFindCarByBrand(){
         Car car = carRepository.findCarByBrand("Toyota");
         assertEquals("Toyota", car.getBrand());
     }
