@@ -45,13 +45,15 @@ class MemberController {
 
     //Security ADMIN
     @PatchMapping("/ranking/{username}/{value}")
-    ResponseEntity<Boolean> setRankingForUser(@PathVariable String username, @PathVariable int value) {
-        return null;
+    void setRankingForUser(@PathVariable String username, @PathVariable int value) {
+        memberService.setRankingForUser(username, value);
     }
 
     // Security ADMIN
     @DeleteMapping("/{username}")
-    void deleteMemberByUsername(@PathVariable String username) {}
+    void deleteMemberByUsername(@PathVariable String username) {
+        memberService.deleteMemberByUsername(username);
+    }
 
 
 }
