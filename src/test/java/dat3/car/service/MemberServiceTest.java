@@ -88,7 +88,7 @@ class MemberServiceH2Test {
     }
     @Test
     void testDeleteMemberByUsername() {
-        memberService.deleteMemberByUsername("m1");
+        memberService.deleteMemberByUsername("user1");
     }
 
     @Test
