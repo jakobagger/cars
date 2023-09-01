@@ -1,12 +1,19 @@
 package dat3.car.service;
 
 import dat3.car.dto.MemberRequest;
+import dat3.car.dto.MemberResponse;
 import dat3.car.entity.Member;
 import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class MemberServiceH2Test {
@@ -26,37 +33,52 @@ class MemberServiceH2Test {
 
     @Test
     void testGetMembersAllDetails() {
-        //Todo
+        List<MemberResponse> responses = memberService.getMembers(true);
+        assertEquals(2, responses.size(), "expects a database with two members");
+        LocalDateTime created = responses.get(0).getCreated();
+        assertNotNull(created, "Since getMembers() received true it should have set a date for the DTO");
     }
 
     @Test
     void testGetMembersNoDetails() {
-        //Todo
+        List<MemberResponse> responses = memberService.getMembers(false);
+        assertEquals(2, responses.size(), "expects a database with two members");
+        LocalDateTime created = responses.get(0).getCreated();
+        assertNull(created, "Since getMembers() received false it should not have set a date for the DTO");
     }
 
     @Test
     void testFindByIdFound() {
-        //TODO
+        MemberResponse response = memberService.findById("user1");
+        assertEquals("user1", response.getUsername());
     }
 
     @Test
     void testFindByIdNotFound() {
-        //This should test that a ResponseStatus exception is thrown with status= 404 (NOT_FOUND)
-        //TODO
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> memberService.findById("non-existing user"));
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
 
     @Test
-        /* Remember MemberRequest comes from the API layer, and MemberResponse is returned to the API layer
-         * Internally addMember savex a Member entity to the database*/
     void testAddMember_UserDoesNotExist() {
-        //Add @AllArgsConstructor to MemberRequest and @Builder to MemberRequest for this to work
-        //TODO
+        MemberRequest request = MemberRequest.builder()
+                .username("user3")
+                .password("1234")
+                .email("email3")
+                .build();
+
+        MemberResponse response = memberService.addMember(request);
+        assertEquals("user3", response.getUsername());
+        assertTrue(memberRepository.existsById("user3"));
     }
 
     @Test
     void testAddMember_UserDoesExistThrows() {
-        //This should test that a ResponseStatus exception is thrown with status= 409 (BAD_REQUEST)
-        //TODO
+        MemberRequest request = new MemberRequest();
+        request.setUsername("user2");
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> memberService.addMember(request));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
     }
 
     @Test

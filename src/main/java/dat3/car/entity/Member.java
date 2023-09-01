@@ -1,5 +1,6 @@
 package dat3.car.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -14,7 +15,9 @@ import lombok.Setter;
 public class Member extends AdminDetails{
     @Id
     private String username;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
     private String firstName;
     private String lastName;
