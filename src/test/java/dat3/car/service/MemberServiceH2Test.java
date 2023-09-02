@@ -83,39 +83,69 @@ class MemberServiceH2Test {
 
     @Test
     void testEditMemberWithExistingUsername() {
-        //TODO
+        MemberRequest memberRequest = new MemberRequest(m1);
+
+        memberRequest.setEmail("New Email");
+        memberRequest.setLastName("New Last Name");
+        memberRequest.setCity("New City");
+        memberService.editMember(memberRequest, "user1");
+
+        memberRepository.flush();
+        MemberResponse response = memberService.findById("user1");
+
+        assertEquals("user1", response.getUsername());
+        assertEquals("New Email", response.getEmail());
+        assertEquals("New Last Name", response.getLastName());
+        assertEquals("New City", response.getCity());
+        assertEquals("fn1", response.getFirstName());
+        assertEquals("zip1", response.getZip());
+        assertEquals("street1", response.getStreet());
+
     }
 
     @Test
     void testEditMemberNON_ExistingUsernameThrows() {
-        //This should test that a ResponseStatus exception is thrown with status= 404 (NOT_FOUND)
-        //TODO
+        MemberRequest memberRequest = new MemberRequest();
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> memberService.editMember(memberRequest, "non-existing user"));
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
 
     @Test
     void testEditMemberChangePrimaryKeyThrows() {
-        //Create a MemberRequest from an existing member we can edit
         MemberRequest request = new MemberRequest(m1);
-        //TODO
+        request.setUsername("New username");
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> memberService.editMember(request, "user1"));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
     }
 
     @Test
     void testSetRankingForUser() {
-        //TODO
+        memberService.setRankingForUser("user1", 3);
+        MemberResponse response = memberService.findById("user1");
+        assertEquals(3, response.getRanking());
     }
 
     @Test
     void testSetRankingForNoExistingUser() {
-        //TODO
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> memberService.setRankingForUser("I don't exist", 3));
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
     @Test
     void testDeleteMemberByUsername() {
         memberService.deleteMemberByUsername("user1");
+        assertFalse(memberRepository.existsById("user1"));
     }
 
     @Test
     void testDeleteMember_ThatDontExist() {
-        //TODO
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
+                () -> memberService.deleteMemberByUsername("I don't exist"));
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
 }
 
