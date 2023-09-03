@@ -36,7 +36,7 @@ public class MemberService {
 
     public MemberResponse addMember(MemberRequest body) {
         if(memberRepository.existsById(body.getUsername())){
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST,"This user already exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This user already exists");
         }
 
         Member newMember = MemberRequest.getMemberEntity(body);

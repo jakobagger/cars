@@ -19,13 +19,13 @@ class MemberController {
         this.memberService = memberService;
     }
 
-    //Security admin only
+    //Security ADMIN
     @GetMapping
     List<MemberResponse> getMembers(){
-        return memberService.getMembers(false);
+        return memberService.getMembers(true);
     }
 
-    //Security ???
+    //Security ADMIN
     @GetMapping(path = "/{username}")
     MemberResponse getMemberById(@PathVariable String username) throws Exception {
         return memberService.findById(username);
