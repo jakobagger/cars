@@ -46,8 +46,8 @@ public class MemberService {
         return new MemberResponse(newMember, true);
     }
 
-    public ResponseEntity<Boolean> editMember(MemberRequest body, String username) {
-        Member member = memberRepository.findById(username).orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Member with this username does not exist"));
+    public void editMember(MemberRequest body, String username) {
+        Member member = getMemberByUsername(username);
         if(!body.getUsername().equals(username)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot change username");
         }
@@ -59,14 +59,12 @@ public class MemberService {
         member.setCity(body.getCity());
         member.setZip(body.getZip());
         memberRepository.save(member);
-        return ResponseEntity.ok(true);
     }
 
 
     public MemberResponse findById(String username) {
-        Member member = memberRepository.findById(username).
-                orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Member with this username does not exist"));
-        return new MemberResponse(member, false);
+        Member member = getMemberByUsername(username);
+        return new MemberResponse(member, true);
     }
 
     public void setRankingForUser(String username, int value) {

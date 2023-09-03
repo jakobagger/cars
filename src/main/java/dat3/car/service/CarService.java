@@ -25,8 +25,7 @@ public class CarService {
     }
 
     public CarResponse findById(int id) {
-        Car car = carRepository.findById(id).
-                orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid id"));
+        Car car = getCarById(id);
         return new CarResponse(car, false);
     }
 

@@ -87,6 +87,7 @@ class MemberServiceH2Test {
 
         memberRequest.setEmail("New Email");
         memberRequest.setLastName("New Last Name");
+        memberRequest.setFirstName("New First Name");
         memberRequest.setCity("New City");
         memberService.editMember(memberRequest, "user1");
 
@@ -97,7 +98,7 @@ class MemberServiceH2Test {
         assertEquals("New Email", response.getEmail());
         assertEquals("New Last Name", response.getLastName());
         assertEquals("New City", response.getCity());
-        assertEquals("fn1", response.getFirstName());
+        assertEquals("New First Name", response.getFirstName());
         assertEquals("zip1", response.getZip());
         assertEquals("street1", response.getStreet());
 
