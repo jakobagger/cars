@@ -1,5 +1,6 @@
-package dat3.car.repository;
+package dat3.repository;
 
+import dat3.car.repository.MemberRepository;
 import dat3.car.entity.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

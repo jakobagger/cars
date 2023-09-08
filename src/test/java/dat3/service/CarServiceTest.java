@@ -1,4 +1,4 @@
-package dat3.car.service;
+package dat3.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
