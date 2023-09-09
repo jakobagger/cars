@@ -5,7 +5,7 @@
    _Brugt i både Car og Member entity-klasser for at vise deres forbindelse til Reservation, liste af reservations som attribut for begge klasser._
    
 - Where an why you have used a @ManyToOne annotation
-- 
+ 
   _Brugt til Reservation entity klasse på dens Car og Member fields, for at vise at en member kan have mange reservationer og at en bil kan være reserveret mange gange._
   
 - The purpose of the CascadeType, FetchType and mappedBy attributes you can use with one-to-many
