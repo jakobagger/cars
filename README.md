@@ -15,8 +15,12 @@
   MappedBy sættes i oneToMany for at angive hvilket field i manyToOne-klassen det skal forbindes med_
   
 - -How/where you have (if done) added user defined queries to you repositories
+
+  _Ikke kommet til det endnu_
   
 - -a few words, explaining what you had to do on your Azure App Service in order to make your Spring Boot App connect to your Azure MySqlDatabase
+
+  _Defineret de tre environment variabler under application settings på AppSErvice's menu. URL skal selvfølgelkig være adresse på Azure serveren._
  
 - -a few words about where you have used inheritance in your project, and how it's reflected in your database
 
