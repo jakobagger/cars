@@ -1,4 +1,4 @@
-package dat3.repository;
+package dat3.car.repository;
 
 import dat3.car.repository.MemberRepository;
 import dat3.car.entity.Member;

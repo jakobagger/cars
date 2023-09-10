@@ -6,7 +6,6 @@ import dat3.security.error.CustomOAuth2AuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -34,7 +33,7 @@ import javax.crypto.spec.SecretKeySpec;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 
-@Configuration
+//@Configuration
 public class SecurityConfig {
 
   //Remove default value below BEFORE deployment
@@ -74,12 +73,12 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
-            //.requestMatchers("/", "/**").permitAll()
+            .requestMatchers("/", "/**").permitAll());
 
             //This is for demo purposes only, and should be removed for a real system
             //.requestMatchers(HttpMethod.GET, "/api/demouser/user-only").hasAuthority("USER")
             // .requestMatchers(HttpMethod.GET, "/api/demouser/admin-only").hasAuthority("ADMIN")
-            .anyRequest().authenticated());
+            //.anyRequest().authenticated());
 
     return http.build();
   }

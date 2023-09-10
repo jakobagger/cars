@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
-@RestController
+//@RestController
 @RequestMapping("/api/auth/")
 @CrossOrigin
 public class AuthenticationController {

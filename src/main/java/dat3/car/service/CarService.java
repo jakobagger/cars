@@ -18,7 +18,6 @@ public class CarService {
     public CarService(CarRepository carRepository){this.carRepository = carRepository;}
     public List<CarResponse> getCars(boolean includeAll) {
         List<Car> cars = carRepository.findAll();
-        //ChatGPT magic, I'm working on understanding lambda and streams:
         return cars.stream()
                 .map(car -> new CarResponse(car, includeAll))
                 .collect(Collectors.toList());
